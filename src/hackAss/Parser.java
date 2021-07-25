@@ -17,9 +17,12 @@ public class Parser {
         try {
             this.fr = new FileReader(file);
             this.br = new BufferedReader(this.fr);
-        } catch (FileNotFoundException e) {
+            line = br.readLine();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(symbol());
     }
 
     public boolean hasMoreCommands() {
@@ -29,11 +32,15 @@ public class Parser {
     public void advance(){
         //reads the next line of the text file
         try {
-            String line = br.readLine();
             System.out.println(line);
+            //String testOut = String.format("dest: %s, comp: %s, jump: %s, symbol: %s", dest(), comp(), jump(), symbol());
+            //System.out.println(testOut);
+            line = br.readLine();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -42,35 +49,69 @@ public class Parser {
     private String commandType() {
         //returns the instruction type (A, C or L) - address, compute, label
         if (line.contains("=")||line.contains(";")){
-            return "C_COMMAND";
+            return "C"; // C Command
         }
         else if (line.startsWith("@")){
-            return "A_COMMAND";
+            return "A"; // A Command
         }
         else if (line.startsWith("(")){
-            return "L_COMMAND";
+            return "L"; // L Command
         }
         else return null;
 
     }
 
     private String symbol() {
-        //TODO build symbol method
-        return "";
+        String commandType = commandType();
+        if ((commandType == "L") || (commandType == "A")) {
+            return line.substring(1, line.length());
+        }
+        else return null;
     }
 
     private String dest() {
-        //TODO build dest method
-        return "";
+        if (commandType() == "C") {
+            if (line.contains("=")){
+                int eqPos = line.indexOf("=");
+                return line.substring(0, eqPos);
+            }
+            else return null;
+        }
+        else return null;
     }
 
     private String comp() {
-        //TODO build comp method
-        return "";
+        if (commandType() == "C") {
+            if (line.contains("=")) {
+                int eqPos = line.indexOf("=");
+                if (line.contains(";")) {
+                    int scPos = line.indexOf(";");
+                    return line.substring(eqPos+1, scPos);
+                }
+                else {
+                    return line.substring(eqPos+1, line.length());
+                }
+            }
+            else {
+                if (line.contains(";")) {
+                    int scPos = line.indexOf(";");
+                    return line.substring(0, scPos);
+                }
+                else return line.substring(0,line.length());
+            }
+        }
+            else return null;
     }
 
     private String jump() {
-        //TODO build jump method
-        return "";
+        if (commandType() == "C"){
+            if (line.contains(";")){
+                int scPos = line.indexOf(";");
+                return line.substring(scPos+1, line.length());
+
+            }
+            else return null;
+        }
+        else return null;
     }
 }
