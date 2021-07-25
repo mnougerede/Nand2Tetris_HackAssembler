@@ -1,12 +1,12 @@
 package hackAss;
 
-import java.util.Enumeration;
+
 import java.util.Hashtable;
 
 public class Code {
     public String dest(String mnemonic){
         //TODO write dest method
-        Hashtable destTable = new Hashtable();
+        Hashtable<String,String> destTable = new Hashtable<>();
 
         destTable.put(null, "000");
         destTable.put("M", "001");
@@ -16,10 +16,12 @@ public class Code {
         destTable.put("AM", "101");
         destTable.put("AD", "110");
         destTable.put("AMD", "111");
+
+        return destTable.get(mnemonic);
     }
     public String comp(String mnemonic){
         //TODO write comp method
-        Hashtable compTable = new Hashtable();
+        Hashtable<String,String> compTable = new Hashtable<>();
 
         compTable.put("0","0101010");
         compTable.put("1","0111111");
@@ -50,11 +52,12 @@ public class Code {
         compTable.put("D&M","1000000");
         compTable.put("D|M","1010101");
 
+        return compTable.get(mnemonic);
 
     }
     public String jump(String mnemonic){
         //TODO write jump method
-        Hashtable jumpTable = new Hashtable();
+        Hashtable<String, String> jumpTable = new Hashtable<>();
 
         jumpTable.put(null, "000");
         jumpTable.put("JGT", "001");
@@ -64,5 +67,7 @@ public class Code {
         jumpTable.put("JNE", "101");
         jumpTable.put("JLE", "110");
         jumpTable.put("JMP", "111");
+
+        return jumpTable.get(mnemonic);
     }
 }
