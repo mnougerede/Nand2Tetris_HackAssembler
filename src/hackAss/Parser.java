@@ -59,25 +59,25 @@ public class Parser {
 
     }
 
-    private String symbol() {
+    public String symbol() {
         if ((commandType().equals("L")) || (commandType().equals("A"))) {
             return line.substring(1);
         }
         else return null;
     }
 
-    private String dest() {
+    public String dest() {
         if (commandType().equals("C")) {
             if (line.contains("=")){
                 int eqPos = line.indexOf("=");
                 return line.substring(0, eqPos);
             }
-            else return null;
+            else return "";
         }
         else return null;
     }
 
-    private String comp() {
+    public String comp() {
         if (commandType().equals("C")) {
             if (line.contains("=")) {
                 int eqPos = line.indexOf("=");
@@ -100,14 +100,14 @@ public class Parser {
             else return null;
     }
 
-    private String jump() {
+    public String jump() {
         if (commandType().equals("C")){
             if (line.contains(";")){
                 int scPos = line.indexOf(";");
                 return line.substring(scPos+1);
 
             }
-            else return null;
+            else return "";
         }
         else return null;
     }

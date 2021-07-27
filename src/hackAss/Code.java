@@ -4,11 +4,10 @@ package hackAss;
 import java.util.Hashtable;
 
 public class Code {
-    public String dest(String mnemonic){
-        //TODO write dest method
+    public static String dest(String mnemonic){
         Hashtable<String,String> destTable = new Hashtable<>();
 
-        destTable.put(null, "000");
+        destTable.put("", "000");
         destTable.put("M", "001");
         destTable.put("D", "010");
         destTable.put("MD", "011");
@@ -19,8 +18,7 @@ public class Code {
 
         return destTable.get(mnemonic);
     }
-    public String comp(String mnemonic){
-        //TODO write comp method
+    public static String comp(String mnemonic){
         Hashtable<String,String> compTable = new Hashtable<>();
 
         compTable.put("0","0101010");
@@ -55,11 +53,10 @@ public class Code {
         return compTable.get(mnemonic);
 
     }
-    public String jump(String mnemonic){
-        //TODO write jump method
+    public static String jump(String mnemonic){
         Hashtable<String, String> jumpTable = new Hashtable<>();
 
-        jumpTable.put(null, "000");
+        jumpTable.put("", "000");
         jumpTable.put("JGT", "001");
         jumpTable.put("JEQ", "010");
         jumpTable.put("JGE", "011");
