@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: hackAss.Main
+Class-Path: C:\Users\mnoug\Study\Coursera\Nand2Tetris\source files\nand2
+ tetris\projects\06\HackAssembler\out\production\HackAssembler\hackAss
+

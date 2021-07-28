@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HackAssembler">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/HackAssembler_jar/HackAssembler.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
