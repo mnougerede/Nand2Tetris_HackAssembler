@@ -15,7 +15,7 @@ public class Parser {
             //This class accesses the input file, removes its whitespace and parses each instruction
             FileReader fr = new FileReader(file);
             this.br = new BufferedReader(fr);
-            line = br.readLine();
+            line = br.readLine().trim();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,19 +31,17 @@ public class Parser {
         //reads the next line of the text file
         try {
             System.out.println(line);
-//            String testOut = String.format("dest: %s, comp: %s, jump: %s, symbol: %s", dest(), comp(), jump(), symbol());
-//            System.out.println(testOut);
+            String testOut = String.format("dest: %s, comp: %s, jump: %s, symbol: %s", dest(), comp(), jump(), symbol());
+            System.out.println(testOut);
             line = br.readLine();
+            if (line != null) line = line.trim();
+            if (!hasMoreCommands()) br.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
-
-
-
     public String commandType() {
         //returns the instruction type (A, C or L) - address, compute, label
         if (line.contains("=")||line.contains(";")){
@@ -60,8 +58,11 @@ public class Parser {
     }
 
     public String symbol() {
-        if ((commandType().equals("L")) || (commandType().equals("A"))) {
+        if (commandType().equals("A")) {
             return line.substring(1);
+        }
+        else if (commandType().equals("L")) {
+            return line.substring(1,line.length()-1);
         }
         else return null;
     }
